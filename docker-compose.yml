@@ -1,0 +1,21 @@
+version: '2'
+services:
+
+  development:
+    build:
+      context: .
+      dockerfile: docker/Dev.dockerfile
+    image: grpc-eventstore-cockroachdb-adapter:development
+    volumes:
+      - ./src:/package/src
+      - ./tests:/package/tests
+      - ./lib:/package/lib
+      - ./lib-tests:/package/lib-tests
+      - ./package.json:/package/package.json
+
+  cockroachdb:
+    image: cockroachdb/cockroach:v1.1.3
+    ports:
+      - "8080:8080"
+      - "26257:26257"
+    command: start --insecure

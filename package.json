@@ -1,0 +1,65 @@
+{
+  "name": "grpc-eventstore-cockroachdb-adapter",
+  "description": "Cockroach DB adapter fot grpc-eventstore",
+  "version": "1.0.0",
+  "private": true,
+  "main": "lib/index.js",
+  "scripts": {
+    "build:dev:image": "./commands/build:dev:image.sh",
+    "transpile": "./commands/transpile.sh",
+    "dev:test": "./commands/adapter:tests.sh live",
+    "test": "./commands/transpile.sh && ./commands/adapter:tests.sh"
+  },
+  "dependencies": {
+    "eventemitter3": "^2.0.3",
+    "lodash": "^4.17.4",
+    "pg": "^7.4.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "eslint": "^4.9.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "mocha": "^4.0.1",
+    "should": "^13.1.2",
+    "sinon": "^4.0.1",
+    "uuid": "^3.1.0"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": ["standard"],
+    "rules": {
+      "arrow-parens": ["error", "always"],
+      "comma-dangle": ["error", "always-multiline"],
+      "indent": [
+        "error",
+        2,
+        {
+          "MemberExpression": "off",
+          "ObjectExpression": "first",
+          "SwitchCase": 1
+        }
+      ]
+    }
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": true
+          }
+        }
+      ]
+    ],
+    "plugins": ["transform-object-rest-spread"]
+  }
+}
